@@ -145,6 +145,12 @@
            <pointsize>12</pointsize>
           </font>
          </property>
+         <property name="acceptDrops">
+          <bool>true</bool>
+         </property>
+         <property name="dragDropMode">
+          <enum>QAbstractItemView::DragDrop</enum>
+         </property>
          <attribute name="horizontalHeaderStretchLastSection">
           <bool>true</bool>
          </attribute>
