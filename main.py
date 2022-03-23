@@ -17,6 +17,7 @@ class Ui(QtWidgets.QMainWindow):
         self.fname = QFileDialog.getExistingDirectory(self, 'Load File')
         if self.fname.isEmpty():
             print("wuhu")
+            print("eca")
         else:
             print(self.fname[0])
             print("aaa")
