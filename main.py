@@ -18,8 +18,7 @@ class Ui(QtWidgets.QMainWindow):
         self.image = QImage()
 
         self.pushButton_Load.clicked.connect(self.loadfileketabel)
-        self.label_Camera.setPixmap(QtGui.QPixmap("adsads.jpg"))
-        self.label_Camera.setScaledContents(True)
+
 
         self.tableWidget_Tabel_File.clicked.connect(self.printt)
     def bacafolder(self):
@@ -29,7 +28,15 @@ class Ui(QtWidgets.QMainWindow):
 
 
     def printt(self):
-        print("adasdasd")
+        row = self.tableWidget_Tabel_File.currentRow()
+        data = self.tableWidget_Tabel_File.item(row, 0)
+        text = data.text()
+        start = os.curdir
+        path = self.path + "/" + str(text)
+        print(path)
+        self.label_Camera.setPixmap(QtGui.QPixmap(path))
+        self.label_Camera.setScaledContents(True)
+
 
     def loadfileketabel(self):
         self.path = self.bacafolder()
