@@ -1,7 +1,10 @@
 import os
 from threading import *
-from PyQt5 import QtWidgets, uic
+from PyQt5 import QtWidgets, uic, QtGui
 import sys
+
+from PyQt5.QtCore import Qt
+from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QTableWidgetItem, QListWidgetItem, QDialog, QFileDialog
 
 
@@ -12,15 +15,21 @@ class Ui(QtWidgets.QMainWindow):
 
         self.path = None
         self.data = None
-
+        self.image = QImage()
 
         self.pushButton_Load.clicked.connect(self.loadfileketabel)
+        self.label_Camera.setPixmap(QtGui.QPixmap("adsads.jpg"))
+        self.label_Camera.setScaledContents(True)
 
-
+        self.tableWidget_Tabel_File.clicked.connect(self.printt)
     def bacafolder(self):
         #, options= QFileDialog.DontUseNativeDialog
         path = QFileDialog.getExistingDirectory(self, 'Load File')
         return path
+
+
+    def printt(self):
+        print("adasdasd")
 
     def loadfileketabel(self):
         self.path = self.bacafolder()
