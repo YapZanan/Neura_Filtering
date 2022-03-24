@@ -6,12 +6,13 @@ import sys
 from PyQt5.QtCore import Qt
 from PyQt5.QtGui import QPixmap, QImage
 from PyQt5.QtWidgets import QTableWidgetItem, QListWidgetItem, QDialog, QFileDialog
-
+import White_Balance
 
 class Ui(QtWidgets.QMainWindow):
     def __init__(self):
         super(Ui, self).__init__()
         uic.loadUi('main.ui', self)
+        self.wb = White_Balance.White_Balance()
 
         self.path = None
         self.data = None
@@ -20,22 +21,32 @@ class Ui(QtWidgets.QMainWindow):
         self.pushButton_Load.clicked.connect(self.loadfileketabel)
 
 
-        self.tableWidget_Tabel_File.clicked.connect(self.printt)
+        # self.tableWidget_Tabel_File.clicked.connect(self.loadkelabel)
+
+        self.tableWidget_Tabel_File.clicked.connect(self.wba)
+        # self.checkBox_Vignette.stateChanged.connect(self.wba)
+
+
+
+    def wba(self):
+        self.wb.grayworld(self.loadkelabel(), len(self.data))
+        # print("aaa")
+
     def bacafolder(self):
         #, options= QFileDialog.DontUseNativeDialog
         path = QFileDialog.getExistingDirectory(self, 'Load File')
         return path
 
 
-    def printt(self):
+    def loadkelabel(self):
         row = self.tableWidget_Tabel_File.currentRow()
         data = self.tableWidget_Tabel_File.item(row, 0)
         text = data.text()
-        start = os.curdir
-        path = self.path + "/" + str(text)
-        print(path)
-        self.label_Camera.setPixmap(QtGui.QPixmap(path))
-        self.label_Camera.setScaledContents(True)
+        path_lengkap = self.path + "/" + str(text)
+        # print(self.path_lengkap)
+        return path_lengkap
+        # self.label_Camera.setPixmap(QtGui.QPixmap(path))
+        # self.label_Camera.setScaledContents(True)
 
 
     def loadfileketabel(self):
